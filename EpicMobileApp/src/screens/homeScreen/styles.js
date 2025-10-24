@@ -1,0 +1,241 @@
+import {StyleSheet} from 'react-native';
+import {Colors, Mixins, Typography} from '../../config/styles';
+import utils from '../../utils';
+
+const {tablet} = utils;
+const {WINDOW_WIDTH} = Mixins;
+export default StyleSheet.create({
+  container: {
+    backgroundColor: Colors.COLOR_FFFFFF,
+    flex: 1,
+  },
+  subView: {
+    flex: 1,
+    backgroundColor: Colors.COLOR_F2F5F9,
+  },
+  centeredView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: Mixins.scaleSize(40),
+    left: 0,
+    right: 0,
+  },
+  noZoneText: {
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+    fontSize: Mixins.scaleFont(22),
+    color: Colors.COLOR_808284,
+    marginBottom: Mixins.scaleSize(16),
+    lineHeight: Mixins.scaleSize(20),
+  },
+  selectText: {
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+    fontSize: Mixins.scaleFont(16),
+    color: Colors.COLOR_808284,
+    lineHeight: Mixins.scaleSize(20),
+  },
+  buttonStyle: {
+    marginTop: Mixins.scaleSize(50),
+    height: Mixins.scaleSizeHeight(50),
+    width: Mixins.scaleSizeWidth(246),
+  },
+  baseModalStyle: {
+    backgroundColor: Colors.COLOR_FFFFFF,
+  },
+  cancelIconStyle: {
+    position: 'absolute',
+    left: WINDOW_WIDTH - Mixins.scaleSize(60),
+    top: -Mixins.scaleSize(22),
+  },
+  rowContainer: {
+    flexDirection: 'row',
+  },
+  zoneText: {
+    fontFamily: Typography.FONT_FAMILY_BOLD,
+    fontSize: Mixins.scaleFont(18),
+    color: Colors.COLOR_000000,
+  },
+  searchInputContainer: {
+    backgroundColor: Colors.COLOR_B0B6BB33,
+    flexDirection: 'row',
+    marginTop: Mixins.scaleSize(17),
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  inputPass: {
+    flex: 0.9,
+    padding: Mixins.scaleSize(12),
+    fontSize: Mixins.scaleFont(16),
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+    color: Colors.COLOR_1A1C1C,
+  },
+  searchButtonStyle: {
+    justifyContent: 'center',
+  },
+  iconStyle: {
+    marginTop: Mixins.scaleFont(18),
+  },
+  renderTopView: {
+    marginTop: Mixins.scaleFont(30),
+    marginBottom: Mixins.scaleFont(12),
+  },
+  listingButtonView: {
+    shadowColor: Colors.COLOR_000,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 3,
+    elevation: 4,
+    borderRadius: Mixins.scaleSize(8),
+    backgroundColor: Colors.COLOR_FFFFFF,
+    marginBottom: Mixins.scaleSize(12),
+    justifyContent: 'center',
+    marginHorizontal: Mixins.scaleSize(2),
+    height: Mixins.scaleSizeHeight(46),
+  },
+  listingButtonViewPress: {
+    shadowColor: Colors.COLOR_000,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 3,
+    borderRadius: Mixins.scaleSize(8),
+    backgroundColor: Colors.COLOR_5D9D521A,
+    marginBottom: Mixins.scaleSize(12),
+    justifyContent: 'center',
+    marginHorizontal: Mixins.scaleSize(2),
+    height: Mixins.scaleSizeHeight(46),
+  },
+  listingText: isFoldableDevice => ({
+    fontSize: (tablet || isFoldableDevice) ? Mixins.scaleSizeHeight(19) : Mixins.scaleFont(16),
+    fontFamily: Typography.FONT_FAMILY_BOLD,
+    color: Colors.COLOR_484949,
+    padding: (tablet || isFoldableDevice) ? Mixins.scaleSize(8) : Mixins.scaleSize(10),
+  }),
+  dropdownView: {
+    backgroundColor: Colors.COLOR_FFFFFF,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderRadius: 10,
+    height: Mixins.scaleSizeHeight(46),
+    shadowColor: Colors.COLOR_000,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 3,
+    elevation: 4,
+    marginHorizontal: Mixins.scaleSize(16),
+    paddingHorizontal: Mixins.scaleSize(10),
+  },
+  dropDownText: {
+    fontSize: Mixins.scaleFont(16),
+    fontFamily: Typography.FONT_FAMILY_BOLD,
+    color: Colors.COLOR_484949,
+  },
+  zoneStaticText: {
+    fontSize: Mixins.scaleFont(14),
+    fontFamily: Typography.FONT_FAMILY_BOLD,
+    color: Colors.COLOR_000000,
+    marginHorizontal: Mixins.scaleSize(18),
+    marginTop: tablet ? Mixins.scaleSize(10) : Mixins.scaleSize(24),
+    marginBottom: Mixins.scaleSize(8),
+  },
+  noZoneTextStyle: {
+    fontSize: Mixins.scaleFont(16),
+    fontFamily: Typography.FONT_FAMILY_BOLD,
+    color: Colors.COLOR_484949,
+    textAlign: 'center',
+    marginTop: Mixins.scaleSize(24),
+  },
+  centeredViewZoneSelected: bottom => ({
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: tablet ? Mixins.scaleSize(20) : Mixins.scaleSize(102),
+    bottom: bottom ? null : Mixins.scaleSize(40),
+  }),
+  tapToStartRecording: (recording,isFoldableDevice) => ({
+    fontFamily: Typography.FONT_FAMILY_BOLD,
+    fontSize: (tablet || isFoldableDevice) ? Mixins.scaleFont(10) : Mixins.scaleFont(14),
+    color: recording ? Colors.COLOR_808284 : Colors.COLOR_F2F5F9,
+    lineHeight: Mixins.scaleSize(16),
+    marginBottom: (tablet || isFoldableDevice) ? Mixins.scaleSize(10) : Mixins.scaleSize(21),
+  }),
+  timerText: (recording, isFoldableDevice) => ({
+    fontFamily: Typography.FONT_FAMILY_BOLD,
+    fontSize: (tablet || isFoldableDevice) ? Mixins.scaleFont(22) : Mixins.scaleFont(32),
+    color: recording ? Colors.COLOR_C63461 : Colors.COLOR_F2F5F9,
+    lineHeight: Mixins.scaleSize(36),
+    marginBottom: tablet ? Mixins.scaleSize(15) : isFoldableDevice ? Mixins.scaleSize(5) : Mixins.scaleSize(10),
+  }),
+  recordingTap: isFoldableDevice => ({
+    fontFamily: Typography.FONT_FAMILY_BOLD,
+    fontSize: Mixins.scaleFont(14),
+    color: Colors.COLOR_808284,
+    lineHeight: Mixins.scaleSize(16),
+    marginTop: tablet ? Mixins.scaleSize(10) : isFoldableDevice ? 0 : Mixins.scaleSize(46),
+    marginBottom: isFoldableDevice ? Mixins.scaleSize(4) : Mixins.scaleSize(21.83),
+  }),
+  playTimerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: Mixins.scaleSize(8.67),
+  },
+  sliderContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  preview: {
+    fontFamily: Typography.FONT_FAMILY_BOLD,
+    fontSize: Mixins.scaleFont(14),
+    color: Colors.COLOR_BABCBC,
+    lineHeight: Mixins.scaleSize(16),
+  },
+  playDurationText: {
+    fontFamily: Typography.FONT_FAMILY_BOLD,
+    fontSize: Mixins.scaleFont(14),
+    color: Colors.COLOR_1A1C1C,
+    lineHeight: Mixins.scaleSize(16),
+  },
+  sendPageButton: isFoldableDevice => ({
+    width: Mixins.scaleSize(238),
+    height: Mixins.scaleSize(46),
+    alignSelf: 'center',
+    bottom: tablet ? Mixins.scaleSize(68) :  isFoldableDevice ? Mixins.scaleSize(38) : Mixins.scaleSize(98),
+    position: 'absolute',
+  }),
+  sendIcon: {
+    marginEnd: Mixins.scaleSize(12.92),
+  },
+  startoverButton: isFoldableDevice => ({
+    alignSelf: 'center',
+    bottom: tablet ? Mixins.scaleSize(25) : isFoldableDevice ? Mixins.scaleSize(15) : Mixins.scaleSize(40),
+    position: 'absolute',
+    flexDirection: 'row',
+    alignItems: 'center',
+  }),
+  startOverText: {
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+    fontSize: Mixins.scaleFont(14),
+    color: Colors.COLOR_003D7D,
+    lineHeight: Mixins.scaleSize(16),
+    fontWeight: '700',
+    marginStart: Mixins.scaleSize(10),
+  },
+  sliderStyle: {
+    marginStart: Mixins.scaleSize(16.48),
+  },
+  tabCenteredViewZoneSelected: isFoldableDevice => ({
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: (tablet  || isFoldableDevice) ? Mixins.scaleSize(20) : Mixins.scaleSize(102),
+  }),
+});

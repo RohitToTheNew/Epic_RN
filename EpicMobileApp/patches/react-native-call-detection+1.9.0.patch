@@ -1,0 +1,16 @@
+diff --git a/node_modules/react-native-call-detection/index.js b/node_modules/react-native-call-detection/index.js
+index 005c3df..0f1978a 100644
+--- a/node_modules/react-native-call-detection/index.js
++++ b/node_modules/react-native-call-detection/index.js
+@@ -15,7 +15,10 @@ const NativeCallDetector = NativeModules.CallDetectionManager
+ const NativeCallDetectorAndroid = NativeModules.CallDetectionManagerAndroid
+ 
+ var CallStateUpdateActionModule = require('./CallStateUpdateActionModule')
+-BatchedBridge.registerCallableModule('CallStateUpdateActionModule', CallStateUpdateActionModule)
++// Support both old and new architecture
++if (BatchedBridge.registerCallableModule) {
++  BatchedBridge.registerCallableModule('CallStateUpdateActionModule', CallStateUpdateActionModule)
++}
+ 
+ const requestPermissionsAndroid = async (permissionMessage) => {
+       await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_PHONE_STATE)
