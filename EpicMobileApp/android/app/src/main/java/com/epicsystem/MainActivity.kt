@@ -1,4 +1,4 @@
-package com.epicmobileapp
+package com.epicsystem
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

@@ -1,4 +1,4 @@
-package com.epicmobileapp
+package com.epicsystem
 
 import android.app.Application
 import com.facebook.react.PackageList
