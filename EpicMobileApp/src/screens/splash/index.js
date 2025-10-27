@@ -175,6 +175,7 @@ const Splash = props => {
       /> */}
 
       <LottieView
+        testID="splashLottie"
         onAnimationFinish={onAnimationFinished}
         source={require('../../assets/lottieJson/iOSSplash.json')}
         autoPlay
