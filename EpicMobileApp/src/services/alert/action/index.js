@@ -1,16 +1,16 @@
 import ApiManager from '../../../config/apiManager';
 import ApiPaths from '../../../config/apiConfig';
-import {LOGGED_IN_SESSION, VERIFIED_URL} from '../../../config/constants';
+import { LOGGED_IN_SESSION, VERIFIED_URL } from '../../../config/constants';
 import {
   SAFE_ALERT_EVENT,
   NAVIGATE_TO_ALERT_SCREEN,
   SAVE_ALERT_DATA,
 } from '../constants';
 import LocalStorageServices from '../../localStorage';
-import {isInternetConnected, updateServerStatus} from '../../app/action';
-import {globalStateUpdate, updateLoadingStatus} from '../../globalState/action';
+import { isInternetConnected, updateServerStatus } from '../../app/action';
+import { globalStateUpdate, updateLoadingStatus } from '../../globalState/action';
 import utils from '../../../utils';
-import {translate} from '../../../translations/translationHelper';
+import { translate } from '../../../translations/translationHelper';
 import {
   resetPermissionData,
   validateServerUrl,
@@ -43,8 +43,14 @@ export const navigateToAlertScreen = toggleEvent => dispatch => {
  */
 export const checkServerStatus = () => {
   return async (dispatch, getState) => {
-    const {routeName} = getState().globalReducer;
+    const { routeName } = getState().globalReducer;
     const verifiedServerUrl = await LocalStorageServices.getItem(VERIFIED_URL);
+
+    // Check if verifiedServerUrl exists before processing
+    if (!verifiedServerUrl) {
+      return;
+    }
+
     setTimeout(() => {
       dispatch(
         validateServerUrl(
@@ -168,7 +174,7 @@ export const getActiveAlerts = (closeLoaderFlag, callback) => {
 export const updateAlertData = (key, value) => dispatch => {
   dispatch({
     type: SAVE_ALERT_DATA,
-    payload: {[key]: value},
+    payload: { [key]: value },
   });
 };
 
@@ -592,9 +598,9 @@ export const getConfiguredButtons = (rowData, callback) => {
     if (isInternetConnected()) {
       ApiManager.getApiCallNoDelay(
         verifiedServerUrl +
-          ApiPaths.getConfiguredButtons +
-          '?eventNames[]=' +
-          `${rowData.item.event_name}`,
+        ApiPaths.getConfiguredButtons +
+        '?eventNames[]=' +
+        `${rowData.item.event_name}`,
         response => {
           const apiResponse = JSON.parse(response.data[0]?.event_data);
           delete apiResponse[10];

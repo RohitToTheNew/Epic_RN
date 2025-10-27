@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest",
+    "test": "jest --forceExit",
     "pods": "cd ios && pod install && cd ..",
     "xcode": "xed -b ios",
     "clean": "cd android && ./gradlew clean",
@@ -82,6 +82,7 @@
     "@react-native/babel-preset": "0.80.0",
     "@react-native/eslint-config": "0.80.0",
     "@react-native/metro-config": "0.80.0",
+    "@testing-library/react-native": "^13.3.3",
     "eslint": "^8.19.0",
     "jest": "^29.6.3",
     "patch-package": "^8.0.1",
@@ -91,5 +92,48 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "jest": {
+    "preset": "react-native",
+    "testTimeout": 10000,
+    "fakeTimers": {
+      "enableGlobally": false
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|@react-native|@react-navigation|react-redux|@sentry)/)"
+    ],
+    "moduleNameMapper": {
+      "\\.(png|jpg|ico|jpeg|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__tests__/__mocks__/image-mock.js"
+    },
+    "testMatch": [
+      "**/?(*-)+(test).[jt]s?(x)"
+    ],
+    "verbose": false,
+    "coverageDirectory": "<rootDir>/__tests__/coverage",
+    "setupFiles": [
+      "<rootDir>/__tests__/__mocks__/test-setup.js",
+      "<rootDir>/__tests__/__mocks__/navigation-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-redux-mock.js",
+      "<rootDir>/__tests__/__mocks__/asyncStorage-mock.js",
+      "<rootDir>/__tests__/__mocks__/redux-persist-mock.js",
+      "<rootDir>/__tests__/__mocks__/lottie-react-native-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-exit-app-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-localize-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-device-info-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-permissions-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-keyboard-aware-scroll-view-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-toast-message-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-safe-area-context-mock.js",
+      "<rootDir>/__tests__/__mocks__/sentry-mock.js",
+      "<rootDir>/__tests__/__mocks__/netInfo-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-webview-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-call-detection-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-audio-recorder-player-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-fs-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-swipe-gestures-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-reconnecting-websocket-mock.js",
+      "<rootDir>/__tests__/__mocks__/rn-fetch-blob-mock.js",
+      "<rootDir>/__tests__/__mocks__/store-setup.js"
+    ]
   }
 }
