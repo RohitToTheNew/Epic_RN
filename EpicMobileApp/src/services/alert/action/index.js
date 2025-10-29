@@ -519,7 +519,6 @@ export const getLockdownDashboardSummary = id => {
               await LocalStorageServices.removeItem(LOGGED_IN_SESSION);
             }
             dispatch(updateLoadingStatus(false));
-            callback(error);
           },
         );
       } catch (error) {
