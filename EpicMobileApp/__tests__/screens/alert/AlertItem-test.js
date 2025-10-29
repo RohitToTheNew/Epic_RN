@@ -84,7 +84,7 @@ const props = {
     },
   },
   acknowledgePerformAction: true,
-  showNotificationPopup:true
+  showNotificationPopup: true
 };
 
 describe('Alert Item component', () => {
@@ -112,7 +112,7 @@ describe('Alert Item component', () => {
     const callback = jest.fn();
     jest
       .spyOn(apiManager, 'getApiCallNoDelay')
-      .mockImplementation((endPoint, successCallback, errorCallback) => {
+      .mockImplementationOnce((endPoint, successCallback, errorCallback) => {
         successCallback({
           success: true,
           data: [
@@ -130,11 +130,11 @@ describe('Alert Item component', () => {
   });
 
   it('should fetch configured buttons for the SAFE Alert, and hide the escalate button, as it is not having any actions added', async () => {
-    const rowData = {item: {id: 1, event_name: 'safeAlert'}};
+    const rowData = { item: { id: 1, event_name: 'safeAlert' } };
     const callback = jest.fn();
     jest
       .spyOn(apiManager, 'getApiCallNoStatus')
-      .mockImplementation((endPoint, successCallback, errorCallback) => {
+      .mockImplementationOnce((endPoint, successCallback, errorCallback) => {
         successCallback([]);
       });
     await store.dispatch(getConfiguredButtons(rowData, callback));
@@ -151,7 +151,7 @@ describe('Alert Item component', () => {
           success: 'false',
         });
       });
-    const rowData = {item: {id: 1, event_name: 'safeAlert'}};
+    const rowData = { item: { id: 1, event_name: 'safeAlert' } };
     const callback = jest.fn();
     await store.dispatch(getConfiguredButtons(rowData, callback));
     expect(store.getState().auth.userPermission).toBe(null);
@@ -161,7 +161,7 @@ describe('Alert Item component', () => {
     jest
       .spyOn(AppAction, 'isInternetConnected')
       .mockImplementation(() => false);
-    const rowData = {item: {id: 1, event_name: 'safeAlert'}};
+    const rowData = { item: { id: 1, event_name: 'safeAlert' } };
     const callback = jest.fn();
     await store.dispatch(getConfiguredButtons(rowData, callback));
     expect(toastSpy).toBeCalled();

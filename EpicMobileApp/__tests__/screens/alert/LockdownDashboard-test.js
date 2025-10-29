@@ -2,12 +2,12 @@ import 'react-native';
 import React from 'react';
 import renderer from 'react-test-renderer';
 import LockdownDashboard from '../../../src/screens/alerts/LockdownDashboard';
-import {fireEvent, render} from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 import * as AlertsAction from '../../../src/services/alert/action';
 import * as AppAction from '../../../src/services/app/action';
 import LocalStorageServices from '../../../src/services/localStorage';
 import apiManager from '../../../src/config/apiManager';
-import {store} from '../../../src/store/configureStore';
+import { store } from '../../../src/store/configureStore';
 import Toast from 'react-native-toast-message';
 
 const props = {
@@ -95,7 +95,7 @@ describe('Lockdown Summary component', () => {
   });
 
   it('should render the component correctly', () => {
-    const {getByTestId} = render(<LockdownDashboard {...props} />);
+    const { getByTestId } = render(<LockdownDashboard {...props} />);
     const allClearSpy = jest.spyOn(AlertsAction, 'allClearAction');
     const getMapsListSpy = jest.spyOn(AlertsAction, 'getMapsList');
     expect(getByTestId('lockdownDashboard')).toBeTruthy();
@@ -116,12 +116,16 @@ describe('Lockdown Summary component', () => {
     jest
       .spyOn(LocalStorageServices, 'getItem')
       .mockResolvedValueOnce('https://qa2.epic.audioe.org/');
-    await store.dispatch(AlertsAction.getLockdownDashboardData(() => {}));
+    await store.dispatch(AlertsAction.getLockdownDashboardData(() => { }));
     expect(store.getState().alert.lockdownDashboardData.data).toHaveLength(6);
   });
 
   it('should log out the user if api gives 401 as response', async () => {
-    const navigationInstance = {routeName: 'Alerts'};
+    const navigationInstance = {
+      routeName: 'Alerts',
+      navigate: jest.fn(),
+      replace: jest.fn(),
+    };
     jest.spyOn(AppAction, 'isInternetConnected').mockImplementation(() => true);
     store.dispatch(
       AppAction.updateAppModalFields('navigationInstance', navigationInstance),
@@ -138,7 +142,7 @@ describe('Lockdown Summary component', () => {
           success: 'false',
         });
       });
-    await store.dispatch(AlertsAction.getLockdownDashboardData(() => {}));
+    await store.dispatch(AlertsAction.getLockdownDashboardData(() => { }));
     expect(store.getState().auth.userPermission).toBe(null);
   });
 
@@ -146,7 +150,7 @@ describe('Lockdown Summary component', () => {
     jest
       .spyOn(AppAction, 'isInternetConnected')
       .mockImplementation(() => false);
-    await store.dispatch(AlertsAction.getLockdownDashboardData(() => {}));
+    await store.dispatch(AlertsAction.getLockdownDashboardData(() => { }));
     expect(toastSpy).toBeCalled();
   });
 });

@@ -25,7 +25,17 @@ jest.mock('../../../src/config/apiManager', () => ({
           },
         });
       }
-    })
+    }),
+  getApiCallNoStatus: jest.fn().mockImplementation((endpoint, successCallback) => {
+    successCallback({
+      success: true,
+      statusCode: 200,
+      message: 'School details fetched',
+      config: {
+        schoolName: 'Test School',
+      },
+    });
+  })
 }));
 
 describe('SSOLoginScreen Component', () => {
